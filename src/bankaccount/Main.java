@@ -32,7 +32,14 @@ public class Main {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-  
+                  if ("".equals(strAccountNo)) {
+			System.out.println("[ERROR] Enter Bank Account number correctly");
+			return null;
+		}
+                  
+                  
+                  
+                  
     public static void main(String[] args) {
         // TODO code application logic here
     }
