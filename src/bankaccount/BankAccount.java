@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bankaccount;
 
 /**
@@ -10,5 +6,21 @@ package bankaccount;
  * @author Ashley
  */
 public class BankAccount {
-    
+                 
+                 private long accountNo;
+	private double accountBalance;
+	
+
+	public BankAccount(long accountNo, double accountBalance) {
+		this.accountNo = accountNo;
+		this.accountBalance = accountBalance;
+	}
+
+	public long getAccountNo() {
+		return this.accountNo;
+	}
+
+	public double getAccountBalance() {
+		return this.accountBalance;
+	}
 }
