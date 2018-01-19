@@ -37,7 +37,31 @@ public class Main {
 			return null;
 		}
                   
-                  
+                  System.out.print("Starting Balance > ");
+		String str_start_balance = "";
+		try {
+			str_start_balance = br.readLine();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		if ("".equals(str_start_balance)) {
+			System.out.println("[ERROR] Enter the starting balance correctly");
+			return null;
+		}
+
+		try {
+			Long accountNo = Long.valueOf(strAccountNo);
+			Double start_balance = Double.valueOf(str_start_balance);
+			BankAccount bank = new BankAccount(accountNo, start_balance);
+
+			return bank;
+		} catch (Exception e) {
+			System.out.println("[ERROR] AccountNo should be a long type.");
+		}
+
+		return null;
+	}
                   
                   
     public static void main(String[] args) {
