@@ -89,7 +89,6 @@ public class Main {
                   
                   
     public static void main(String[] args) {
-        // TODO code application logic here
         
         BankAccount bank = null;
 
@@ -97,6 +96,31 @@ public class Main {
 		final double[] transaction2 = new double[] { 20, 20, -20, 50, -20, 10, 50, 50, -20, 10, 10 };
 		final double[] transaction3 = new double[] { 50, 10, 10, -10, -10, 50, 20, -10, -20 };
 		final double[] transaction4 = new double[] { 50, 10, -20, 20, 10, -20 };
+                
+                                   while (true) {
+			printMenu();
+			String sline = null;
+			try {
+				sline = br.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			System.out.println("");
+			if ("1".equals(sline)) { // create a Account
+				bank = createAccount();
+				System.out.println("Successfully created account.\n");
+
+			} else if ("2".equals(sline)) {
+				// User user = createUser();
+
+				if (bank == null) {
+					System.out.println("Please create account.");
+					continue;
+				}
+                        }
+                                   }
     }
-    
 }
+    
