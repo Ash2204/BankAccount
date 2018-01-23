@@ -63,7 +63,7 @@ public class Main {
 		return null;
 	}
                  
-                  // creates the users defines names, surnames and transactions in array list
+                  // creates new users, defines names, surnames and transactions in array list
                   public static user createUser() {
 		String name1 = "Saul", surname1 = "Goodman";
 		String name2 = "Walter", surname2 = "White";
@@ -90,6 +90,13 @@ public class Main {
                   
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        BankAccount bank = null;
+
+		final double[] transaction1 = new double[] { 50, 10, -20, 10, -20, 20, 10, 50, -10, 10, -10, 50 };
+		final double[] transaction2 = new double[] { 20, 20, -20, 50, -20, 10, 50, 50, -20, 10, 10 };
+		final double[] transaction3 = new double[] { 50, 10, 10, -10, -10, 50, 20, -10, -20 };
+		final double[] transaction4 = new double[] { 50, 10, -20, 20, 10, -20 };
     }
     
 }
