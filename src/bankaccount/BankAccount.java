@@ -37,8 +37,8 @@ public class BankAccount {
 	public boolean withdraw(double value, user user) {
 
 		if (user.getBankAccount().accountBalance < value) {
-			System.out.println("Can't withdraw (user:" + user.getUserName() + ",maney:" + String.valueOf(value)
-					+ ")! Current account haven't sufficient");
+			System.out.println("Can't withdraw (user:" + user.getUserName() + ",money:" + String.valueOf(value)
+					+ ")! Your current account has insufficient funds");
 			return false;
 		}
 		user.getBankAccount().accountBalance -= value;
