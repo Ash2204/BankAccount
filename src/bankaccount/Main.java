@@ -86,9 +86,10 @@ public class Main {
 		user user4 = new user(name4, surname4, userBank4, transaction4);
 
 		return null;
+                  }
                   
                   
-    public static void main(String[] args) {
+    public static void main(String args[]) {
         
         BankAccount bank = null;
 
@@ -96,8 +97,8 @@ public class Main {
 		final double[] transaction2 = new double[] { 20, 20, -20, 50, -20, 10, 50, 50, -20, 10, 10 };
 		final double[] transaction3 = new double[] { 50, 10, 10, -10, -10, 50, 20, -10, -20 };
 		final double[] transaction4 = new double[] { 50, 10, -20, 20, 10, -20 };
-                
-                                   while (true) {
+
+		while (true) {
 			printMenu();
 			String sline = null;
 			try {
@@ -119,8 +120,8 @@ public class Main {
 					System.out.println("Please create account.");
 					continue;
 				}
-                                                                        
-                                                                      BankAccount userBank = bank;
+
+				BankAccount userBank = bank;
 				String name1 = "Saul", surname1 = "Goodman";
 				String name2 = "Walter", surname2 = "White";
 				String name3 = "Jessie", surname3 = "Pinkman";
@@ -133,8 +134,37 @@ public class Main {
 
 				System.out.println("Successfully created user.\n");
 
-                        }
-                                   }
-    }
-}
-    
+			} else if ("3".equals(sline)) {
+
+				if (user1 == null) {
+					System.out.println("Please create user.");
+					continue;
+				}
+
+				if (bank == null) {
+					System.out.println("Please create account.");
+					continue;
+				}
+
+				System.out.println("Start simulator !");
+				BankAccount userBank = bank;
+				Thread deposit_thread1 = new Thread() {
+
+					@Override
+					public void run() {
+						// Wait to simulate io like database access ...
+						super.run();
+						for (int i = 0; i < transaction1.length; i++) {
+							if (transaction1[i] > 0) {
+								userBank.deposit(transaction1[i], user1);
+							} else {
+								if (!userBank.withdraw(-transaction1[i], user1)) {
+								
+								}
+							}
+						}
+					}
+				};
+				deposit_thread1.start();
+                                
+                                                                       
