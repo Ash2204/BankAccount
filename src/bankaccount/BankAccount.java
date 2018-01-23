@@ -1,9 +1,8 @@
-
 package bankaccount;
 
 /**
  *
- * @author Ashley
+ * @author Ashley synchronized
  */
 public class BankAccount {
                  
