@@ -119,6 +119,20 @@ public class Main {
 					System.out.println("Please create account.");
 					continue;
 				}
+                                                                        
+                                                                      BankAccount userBank = bank;
+				String name1 = "Saul", surname1 = "Goodman";
+				String name2 = "Walter", surname2 = "White";
+				String name3 = "Jessie", surname3 = "Pinkman";
+				String name4 = "Hank", surname4 = "Schrader";
+
+				user1 = new user(name1, surname1, userBank, transaction1);
+				user2 = new user(name2, surname2, userBank, transaction2);
+				user3 = new user(name3, surname3, userBank, transaction3);
+				user4 = new user(name4, surname4, userBank, transaction4);
+
+				System.out.println("Successfully created user.\n");
+
                         }
                                    }
     }
