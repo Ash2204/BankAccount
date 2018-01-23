@@ -11,7 +11,11 @@ import java.io.InputStreamReader;
  */
 public class Main {
     
-    
+                  static user user1 = null;
+	static user user2 = null;
+	static user user3 = null;
+	static user user4 = null;
+
                   public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                   // prints first menu for the user to create a bank account, user, runs the simulation and exits the application.
 	public static void printMenu() {
@@ -167,4 +171,69 @@ public class Main {
 				};
 				deposit_thread1.start();
                                 
-                                                                       
+                                                                       Thread deposit_thread2 = new Thread() {
+
+					@Override
+					public void run() {
+						// Wait to simulate io like database access ...
+						super.run();
+						for (int i = 0; i < transaction2.length; i++) {
+							if (transaction2[i] > 0) {
+								userBank.deposit(transaction2[i], user2);
+							} else {
+								if (!userBank.withdraw(-transaction2[i], user2)) {
+
+								}
+							}
+						}
+					}
+				};
+				deposit_thread2.start();
+
+				Thread deposit_thread3 = new Thread() {
+
+					@Override
+					public void run() {
+						// Wait to simulate io like database access ...
+						super.run();
+						for (int i = 0; i < transaction3.length; i++) {
+							if (transaction3[i] > 0) {
+								userBank.deposit(transaction3[i], user3);
+							} else {
+								if (!userBank.withdraw(-transaction3[i], user3)) {
+
+								}
+							}
+						}
+					}
+				};
+				deposit_thread3.start();
+
+				Thread deposit_thread4 = new Thread() {
+
+					@Override
+					public void run() {
+						// Wait to simulate io like database access ...
+						super.run();
+						for (int i = 0; i < transaction4.length; i++) {
+							if (transaction4[i] > 0) {
+								userBank.deposit(transaction4[i], user4);
+							} else {
+								if (!userBank.withdraw(-transaction4[i], user4)) {
+
+								}
+							}
+						}
+					}
+				};
+				deposit_thread4.start();
+			} else if ("4".equals(sline)) {
+				break;
+			}
+		}
+
+		System.out.println("End Bank Simulator. Bye!");
+	}
+
+}
+
