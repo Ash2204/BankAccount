@@ -23,4 +23,12 @@ public class BankAccount {
 	public double getAccountBalance() {
 		return this.accountBalance;
 	}
+        
+                  public boolean deposit(double value, user user) {
+		
+		user.getBankAccount().accountBalance += value;
+		System.out.println();
+		System.out.println("Operation for deposit  >> name:" + user.getUserName() + ", surname : " + user.getUserSurname()
+						+ ", value => " + value + ", Account Balance = " + user.getBankAccount().accountBalance);
+		return true;
 }
