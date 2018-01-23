@@ -96,12 +96,7 @@ public class Main {
     public static void main(String args[]) {
         
         BankAccount bank = null;
-
-		final double[] transaction1 = new double[] { 50, 10, -20, 10, -20, 20, 10, 50, -10, 10, -10, 50 };
-		final double[] transaction2 = new double[] { 20, 20, -20, 50, -20, 10, 50, 50, -20, 10, 10 };
-		final double[] transaction3 = new double[] { 50, 10, 10, -10, -10, 50, 20, -10, -20 };
-		final double[] transaction4 = new double[] { 50, 10, -20, 20, 10, -20 };
-
+		
 		while (true) {
 			printMenu();
 			String sline = null;
@@ -113,7 +108,7 @@ public class Main {
 			}
 
 			System.out.println("");
-			if ("1".equals(sline)) { // create a Account
+			if ("1".equals(sline)) { // creates Account
 				bank = createAccount();
 				System.out.println("Successfully created account.\n");
 
@@ -126,21 +121,89 @@ public class Main {
 				}
 
 				BankAccount userBank = bank;
-				String name1 = "Saul", surname1 = "Goodman";
-				String name2 = "Walter", surname2 = "White";
-				String name3 = "Jessie", surname3 = "Pinkman";
-				String name4 = "Hank", surname4 = "Schrader";
+				
+				boolean state = true;
+				
+				while (state) {
+					//printMenu();
+					
+					System.out.println("Create a User");
+					System.out.print("User name: > ");
+					
+					String user_name = "";
+					try {
+						user_name = br.readLine();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					if ("".equals(user_name)) {
+						System.out.println("[ERROR] Enter the starting user name correctly");
+					}
+					
+					System.out.print("User surname: > ");
+					
+					String user_surname = "";
+					try {
+						user_surname = br.readLine();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					if ("".equals(user_surname)) {
+						System.out.println("[ERROR] Enter the starting user surname correctly");
+					}
+					
+					System.out.print("Please enter the user transactions using , to seperate values: > ");
+					
+					String transaction = "";
+					try {
+						transaction = br.readLine();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					if ("".equals(transaction)) {
+						System.out.println("[ERROR] Enter the starting user transaction correctly");
+					}
+					
+					String[] transaction_string = transaction.split(",");
+					
+					double [] transaction_double = new double [transaction_string.length]; 
+					
+					for (int i=0; i<transaction_string.length; i++){ 
+						transaction_double[i] = Double.parseDouble(transaction_string[i]); 
+					} 
+					
+					User user = new User(user_name, user_surname, userBank, transaction_double);
+					
+					userList.add(user);
+					transactionList.add(transaction_double);
 
-				user1 = new user(name1, surname1, userBank, transaction1);
-				user2 = new user(name2, surname2, userBank, transaction2);
-				user3 = new user(name3, surname3, userBank, transaction3);
-				user4 = new user(name4, surname4, userBank, transaction4);
-
-				System.out.println("Successfully created user.\n");
-
+					System.out.print("Continue for create user? (y/n) >");
+					
+					String continue_check = "";
+					try {
+						continue_check = br.readLine();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					if ("n".equals(continue_check)) {
+						state = false;
+					}
+					
+					System.out.println("");
+				}
+				
+			
 			} else if ("3".equals(sline)) {
 
-				if (user1 == null) {
+				if (userList == null) {
 					System.out.println("Please create user.");
 					continue;
 				}
@@ -152,81 +215,15 @@ public class Main {
 
 				System.out.println("Start simulator !");
 				BankAccount userBank = bank;
-				Thread deposit_thread1 = new Thread() {
-
-					@Override
-					public void run() {
-						// Wait to simulate io like database access ...
-						super.run();
-						for (int i = 0; i < transaction1.length; i++) {
-							if (transaction1[i] > 0) {
-								userBank.deposit(transaction1[i], user1);
-							} else {
-								if (!userBank.withdraw(-transaction1[i], user1)) {
-								
-								}
-							}
-						}
-					}
-				};
-				deposit_thread1.start();
-                                
-                                                                       Thread deposit_thread2 = new Thread() {
-
-					@Override
-					public void run() {
-						// Wait to simulate io like database access ...
-						super.run();
-						for (int i = 0; i < transaction2.length; i++) {
-							if (transaction2[i] > 0) {
-								userBank.deposit(transaction2[i], user2);
-							} else {
-								if (!userBank.withdraw(-transaction2[i], user2)) {
-
-								}
-							}
-						}
-					}
-				};
-				deposit_thread2.start();
-
-				Thread deposit_thread3 = new Thread() {
-
-					@Override
-					public void run() {
-						// Wait to simulate io like database access ...
-						super.run();
-						for (int i = 0; i < transaction3.length; i++) {
-							if (transaction3[i] > 0) {
-								userBank.deposit(transaction3[i], user3);
-							} else {
-								if (!userBank.withdraw(-transaction3[i], user3)) {
-
-								}
-							}
-						}
-					}
-				};
-				deposit_thread3.start();
-
-				Thread deposit_thread4 = new Thread() {
-
-					@Override
-					public void run() {
-						// Wait to simulate io like database access ...
-						super.run();
-						for (int i = 0; i < transaction4.length; i++) {
-							if (transaction4[i] > 0) {
-								userBank.deposit(transaction4[i], user4);
-							} else {
-								if (!userBank.withdraw(-transaction4[i], user4)) {
-
-								}
-							}
-						}
-					}
-				};
-				deposit_thread4.start();
+				
+				for (int i = 0;i < userList.size();i++){
+					//CreateThread newThread= new CreateThread(userList.get(i), userBank, transactionList.get(i));
+					
+					Thread newThread = new Thread(new CreateThread(userList.get(i), userBank, transactionList.get(i)));
+					newThread.start();
+				}
+				
+				
 			} else if ("4".equals(sline)) {
 				break;
 			}
@@ -236,4 +233,3 @@ public class Main {
 	}
 
 }
-
