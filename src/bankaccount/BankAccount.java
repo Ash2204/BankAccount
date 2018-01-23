@@ -3,7 +3,7 @@ package bankaccount;
 
 /**
  *
- * @author Ashley
+ * @author Ashley master copy
  */
 public class BankAccount {
                  
