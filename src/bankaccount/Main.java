@@ -4,6 +4,7 @@ package bankaccount;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 /**
  *
@@ -11,13 +12,11 @@ import java.io.InputStreamReader;
  */
 public class Main {
     
-                  static user user1 = null;
-	static user user2 = null;
-	static user user3 = null;
-	static user user4 = null;
+                  static ArrayList<User> userList = new ArrayList<User>();
+	static ArrayList<double[]> transactionList = new ArrayList<double[]>();
 
                   public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-                  // prints first menu for the user to create a bank account, user, runs the simulation and exits the application.
+                  // prints first menu for the User to create a bank account, User, runs the simulation and exits the application.
 	public static void printMenu() {
 		System.out.println("1. Create Bank Account");
 		System.out.println("2. Create User");
@@ -66,33 +65,7 @@ public class Main {
 
 		return null;
 	}
-                 
-                  // creates new users, defines names, surnames and transactions in array list
-                  public static user createUser() {
-		String name1 = "Saul", surname1 = "Goodman";
-		String name2 = "Walter", surname2 = "White";
-		String name3 = "Jessie", surname3 = "Pinkman";
-		String name4 = "Hank", surname4 = "Schrader";
-
-		BankAccount userBank1 = createAccount();
-		BankAccount userBank2 = createAccount();
-		BankAccount userBank3 = createAccount();
-		BankAccount userBank4 = createAccount();
-
-		double[] transaction1 = { 50, 10, -20, 10, -20, 20, 10, 50, -10, 10, -10, 50 };
-		double[] transaction2 = { 20, 20, -20, 50, -20, 10, 50, 50, -20, 10, 10 };
-		double[] transaction3 = { 50, 10, 10, -10, -10, 50, 20, -10, -1111 };
-		double[] transaction4 = { 50, 10, -20, 20, 10, -20 };
-
-		user user1 = new user(name1, surname1, userBank1, transaction1);
-		user user2 = new user(name2, surname2, userBank2, transaction2);
-		user user3 = new user(name3, surname3, userBank3, transaction3);
-		user user4 = new user(name4, surname4, userBank4, transaction4);
-
-		return null;
-                  }
-                  
-                  
+                            
     public static void main(String args[]) {
         
         BankAccount bank = null;
@@ -113,7 +86,7 @@ public class Main {
 				System.out.println("Successfully created account.\n");
 
 			} else if ("2".equals(sline)) {
-				// User user = createUser();
+				// User User = createUser();
 
 				if (bank == null) {
 					System.out.println("Please create account.");
