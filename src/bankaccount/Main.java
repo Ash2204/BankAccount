@@ -1,6 +1,7 @@
 
 package bankaccount;
 
+// imports needed for project
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,7 +15,8 @@ public class Main {
     
                   static ArrayList<User> userList = new ArrayList<User>();
 	static ArrayList<double[]> transactionList = new ArrayList<double[]>();
-
+        
+                  // instantiate BufferedReader object
                   public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                   // prints first menu for the User to create a bank account, User, runs the simulation and exits the application.
 	public static void printMenu() {
@@ -30,8 +32,10 @@ public class Main {
 		System.out.println("Create Bank Account");
 		System.out.print("Bank Account number: > ");
 		String strAccountNo = "";
+                
+                                    // try block for Bank account number, that reads user input and catches with error
 		try {
-			strAccountNo = br.readLine();
+			strAccountNo = br.readLine(); // Reads user input and catches with error
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -42,8 +46,9 @@ public class Main {
                   
                   System.out.print("Starting Balance > ");
 		String str_start_balance = "";
+                                    // try block for starting balance, that reads user input and catches with error
 		try {
-			str_start_balance = br.readLine();
+			str_start_balance = br.readLine(); 
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -52,7 +57,7 @@ public class Main {
 			System.out.println("[ERROR] Enter the starting balance correctly");
 			return null;
 		}
-
+                                    // try block that reads user input and catches with error, also instansates Bankaccount
 		try {
 			Long accountNo = Long.valueOf(strAccountNo);
 			Double start_balance = Double.valueOf(str_start_balance);
@@ -65,13 +70,13 @@ public class Main {
 
 		return null;
 	}
-                            
+       // main method                     
     public static void main(String args[]) {
         
        BankAccount bank = null;
 		
 		while (true) {
-			printMenu();
+			printMenu(); // prints 1st menu
 			String sline = null;
 			try {
 				sline = br.readLine();
@@ -81,7 +86,7 @@ public class Main {
 			}
 
 			System.out.println("");
-			if ("1".equals(sline)) { // create a Account
+			if ("1".equals(sline)) { // create a Account with error check
 				bank = createAccount();
 				System.out.println("Successfully created account.\n");
 
@@ -103,8 +108,8 @@ public class Main {
 				boolean state = true;
 				
 				while (state) {
-					//printMenu();
 					
+                                                                                        //printMenu for user();
 					System.out.println("Create a User");
 					String user_name = null;
 					String user_surname = null;
@@ -168,20 +173,20 @@ public class Main {
 						transaction_state = false;
 					}
 					
-					
+					// array of transactions are split by ,
 					String[] transaction_string = user_transaction.split(",");
-					
+					//new transaction instance
 					double [] transaction_double = new double [transaction_string.length]; 
-					
+					//loop to run transaction list value
 					for (int i=0; i<transaction_string.length; i++){ 
 						transaction_double[i] = Double.parseDouble(transaction_string[i]); 
 					} 
-					
+					// new user instance
 					User user = new User(user_name, user_surname, userBank, transaction_double);
-					
+					//add method for user and transactions
 					userList.add(user);
 					transactionList.add(transaction_double);
-
+                                                                                        //asks user if they would like another user to be made uses try catch block to error check
 					System.out.print("Continue for create user? (y/n) >");
 					
 					String continue_check = "";
@@ -214,10 +219,10 @@ public class Main {
 
 				System.out.println("Start simulator !");
 				BankAccount userBank = bank;
-				
+				//loop for users made
 				for (int i = 0;i < userList.size();i++){
 					//CreateThread newThread= new CreateThread(userList.get(i), userBank, transactionList.get(i));
-					
+					// Creates a new thread object from this class
 					Thread newThread = new Thread(new CreateThread(userList.get(i), userBank, transactionList.get(i)));
 					newThread.start();
 				}
@@ -227,7 +232,7 @@ public class Main {
 				break;
 			}
 		}
-
+                                    // end message after the last thread is used.
 		System.out.println("End Bank Simulator. Bye!");
 	}
 
