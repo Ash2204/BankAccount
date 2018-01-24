@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Ashley
  */
 public class Main {
-    
+                  //ArrayList declarations, one for string<user> and the other for <double> 
                   static ArrayList<User> userList = new ArrayList<User>();
 	static ArrayList<double[]> transactionList = new ArrayList<double[]>();
         
@@ -29,6 +29,7 @@ public class Main {
                   
                   // Creates the bank account, adds a account number and checks for errors 
                   public static BankAccount createAccount() {
+                                    // asks for user inputs
 		System.out.println("Create Bank Account");
 		System.out.print("Bank Account number: > ");
 		String strAccountNo = "";
