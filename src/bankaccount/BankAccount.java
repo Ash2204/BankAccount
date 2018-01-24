@@ -48,6 +48,7 @@ public class BankAccount {
 	}
 }
 
+// Runnable interface contains run method
 class Transaction implements Runnable {
 	private BankAccount sourceAccount, destinationAccount;
 	private double amount;
@@ -57,7 +58,7 @@ class Transaction implements Runnable {
 		this.destinationAccount = destinationAccount;
 		this.amount = amount;
 	}
-
+                    // run method prints when finished.
 	public void run() {
 		System.out.printf("%s completed ", Thread.currentThread().getName());
 	}
