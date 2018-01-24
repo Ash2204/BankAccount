@@ -68,7 +68,7 @@ public class Main {
                             
     public static void main(String args[]) {
         
-        BankAccount bank = null;
+       BankAccount bank = null;
 		
 		while (true) {
 			printMenu();
@@ -81,18 +81,23 @@ public class Main {
 			}
 
 			System.out.println("");
-			if ("1".equals(sline)) { // creates Account
+			if ("1".equals(sline)) { // create a Account
 				bank = createAccount();
 				System.out.println("Successfully created account.\n");
 
 			} else if ("2".equals(sline)) {
-				// User User = createUser();
+				// User user = createUser();
 
 				if (bank == null) {
 					System.out.println("Please create account.");
 					continue;
 				}
+				
+				transactionList  = new ArrayList<>();
+				userList  = new ArrayList<>();
 
+				
+				
 				BankAccount userBank = bank;
 				
 				boolean state = true;
@@ -101,49 +106,70 @@ public class Main {
 					//printMenu();
 					
 					System.out.println("Create a User");
-					System.out.print("User name: > ");
+					String user_name = null;
+					String user_surname = null;
+					String user_transaction = null;
 					
-					String user_name = "";
-					try {
-						user_name = br.readLine();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					boolean name_state = true;
+					while(name_state){
+						System.out.print("User name: > ");
+						
+						user_name = "";
+						try {
+							user_name = br.readLine();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						if ("".equals(user_name)) {
+							System.out.println("[ERROR] Enter the starting user name correctly. try again !");
+							continue;
+						}
+						name_state = false;
+							
 					}
 					
-					if ("".equals(user_name)) {
-						System.out.println("[ERROR] Enter the starting user name correctly");
+					boolean sur_state = true;
+					while(sur_state){
+						System.out.print("User surname: > ");
+						user_surname = "";
+						try {
+							user_surname = br.readLine();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						if ("".equals(user_surname)) {
+							System.out.println("[ERROR] Enter the starting user surname correctly, try again !");
+							continue;
+						}
+						sur_state = false;
 					}
 					
-					System.out.print("User surname: > ");
 					
-					String user_surname = "";
-					try {
-						user_surname = br.readLine();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					boolean transaction_state = true;
+					while(transaction_state){
+						System.out.print("User transaction: > ");
+						
+						user_transaction = "";
+						try {
+							user_transaction = br.readLine();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						if ("".equals(user_transaction)) {
+							System.out.println("[ERROR] Enter the starting user transaction correctly");
+							continue;
+						}
+						transaction_state = false;
 					}
 					
-					if ("".equals(user_surname)) {
-						System.out.println("[ERROR] Enter the starting user surname correctly");
-					}
 					
-					System.out.print("Please enter the user transactions using , to seperate values: > ");
-					
-					String transaction = "";
-					try {
-						transaction = br.readLine();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					if ("".equals(transaction)) {
-						System.out.println("[ERROR] Enter the starting user transaction correctly");
-					}
-					
-					String[] transaction_string = transaction.split(",");
+					String[] transaction_string = user_transaction.split(",");
 					
 					double [] transaction_double = new double [transaction_string.length]; 
 					
