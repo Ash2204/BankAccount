@@ -5,6 +5,7 @@ package bankaccount;
  * @author Ashley
  */
 
+//Runnable interface contains run method
 public class CreateThread implements Runnable {
 
 	private User user;
@@ -15,7 +16,7 @@ public class CreateThread implements Runnable {
 	@Override
 	public void run() {
 		// Wait to simulate io like database access ...
-		
+		//loop that runs the transactions length with positive and negavite transactions
 		for (int i = 0; i < transaction.length; i++) {
 			if (transaction[i] > 0) {
 				userBank.deposit(transaction[i], user);
