@@ -23,7 +23,7 @@ public class BankAccount {
 		return this.accountBalance;
 	}
         
-                  public synchronized boolean deposit(double value, User user) {
+                  public boolean deposit(double value, User user) {
 		// lock.lock();
 		user.getBankAccount().accountBalance += value;
                                     // System.out.println(user.getBankAccount().accountBalance + " => " +
@@ -36,7 +36,7 @@ public class BankAccount {
                  
                   }
 
-	public synchronized boolean withdraw(double value, User user) {
+	public boolean withdraw(double value, User user) {
                                    // lock.lock();
 		if (user.getBankAccount().accountBalance < value) {
 			System.out.println("Can't withdraw (user:" + user.getUserName() + ",money:" + String.valueOf(value)
