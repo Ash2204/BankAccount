@@ -8,6 +8,8 @@ package bankaccount;
  * Synchronization in java is the capability to control the access of multiple threads to any shared resource.
  * Java Synchronization is better option where we want to allow only one thread to access the shared resource.
  * 
+ * Throwing away transactions is a problem that needs to be addressed in this program, this shouldn't happen.
+ * 
  *
  */
 public class BankAccount {
