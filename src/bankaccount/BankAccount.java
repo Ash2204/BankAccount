@@ -3,6 +3,7 @@ package bankaccount;
 /**
  *
  * @author Ashley synchronized
+ * 
  * This Application runs a banking simulation using threads, it shows the difference between the threads being synchronized or not.
  * When the thread isn't synchronized problems may occur, in that threads might be duplicated and processed at the same time.
  * Synchronization in java is the capability to control the access of multiple threads to any shared resource.
